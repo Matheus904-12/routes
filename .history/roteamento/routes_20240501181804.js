@@ -11,7 +11,7 @@ export function Routes() {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name="Receitas"
+                name="Receita"
                 component={Receita}
                 options={{
                     tabBarShowLabel: false,

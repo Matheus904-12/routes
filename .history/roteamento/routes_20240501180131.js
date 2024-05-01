@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Viagem } from './pages/viagem';
-import { Livros } from './pages/livros';
-import { Aparelho } from './pages/aparelho';
+import { Livros } from './pages/filmes';
+import { Roupas } from './pages/roupas';
 import { Receita } from './pages/receita';
 import { Ionicons } from '@expo/vector-icons/'
 
@@ -11,7 +11,7 @@ export function Routes() {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name="Receitas"
+                name="Receita"
                 component={Receita}
                 options={{
                     tabBarShowLabel: false,
@@ -20,7 +20,7 @@ export function Routes() {
                         if (focused) {
                             return (<Ionicons size={25} color={"#000"} name="fast-food" />)
                         }
-                        return (<Ionicons size={20} color={"red"} name="fast-food-outline" />)
+                        return (<Ionicons size={20} color={"#000"} name="fast-food-outline" />)
                     }
                 }}
             />
@@ -34,7 +34,7 @@ export function Routes() {
                         if (focused) {
                             return (<Ionicons size={25} color={"#000"} name="airplane" />)
                         }
-                        return (<Ionicons size={20} color={"red"} name="airplane-outline" />)
+                        return (<Ionicons size={20} color={"#000"} name="airplane-outline" />)
                     }
                 }}
             />
@@ -48,21 +48,21 @@ export function Routes() {
                         if (focused) {
                             return (<Ionicons size={25} color={"#000"} name="book" />)
                         }
-                        return (<Ionicons size={20} color={"red"} name="book-outline" />)
+                        return (<Ionicons size={20} color={"#000"} name="book-outline" />)
                     }
                 }}
             />
             <Tab.Screen
-                name="Aparelhos"
-                component={Aparelho}
+                name="Roupas"
+                component={Roupas}
                 options={{
                     tabBarShowLabel: false,
                     headerShown: false,
                     tabBarIcon: ({ focused }) => {
                         if (focused) {
-                            return (<Ionicons size={25} color={"#000"} name="phone-portrait" />)
+                            return (<Ionicons size={25} color={"#000"} name="phone" />)
                         }
-                        return (<Ionicons size={20} color={"red"} name="phone-portrait-outline" />)
+                        return (<Ionicons size={20} color={"#000"} name="phone-outline" />)
                     }
                 }}
             />

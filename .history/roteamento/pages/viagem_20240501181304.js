@@ -99,7 +99,7 @@ export function Viagem() {
                 </View>
 
                 <TouchableOpacity style={ESTILOS.button} onPress={gerarReceita}>
-                    <Text style={ESTILOS.buttonText}>Gerar viagem ✈️</Text>
+                    <Text style={ESTILOS.buttonText}>Gerar viagem </Text>
                 </TouchableOpacity>
 
                 <ScrollView contentContainerStyle={{ paddingBottom: 24, marginTop: 4, }} style={ESTILOS.containerScroll} showsVerticalScrollIndicator={false} >
@@ -156,7 +156,7 @@ const ESTILOS = StyleSheet.create({
         marginBottom: 16,
     },
     button: {
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         width: '90%',
         borderRadius: 8,
         flexDirection: 'row',

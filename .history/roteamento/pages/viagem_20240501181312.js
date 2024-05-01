@@ -156,7 +156,7 @@ const ESTILOS = StyleSheet.create({
         marginBottom: 16,
     },
     button: {
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         width: '90%',
         borderRadius: 8,
         flexDirection: 'row',

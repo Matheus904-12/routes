@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const alturaStatusBar = StatusBar.currentHeight;
 const KEY_GPT = 'SUA_CHAVE_DE_API';
 
-export function Viagem() {
+export function Livros() {
 
     const [load, defLoad] = useState(false);
     const [receita, defReceita] = useState("");
@@ -25,7 +25,7 @@ export function Viagem() {
         defLoad(true);
         Keyboard.dismiss();
 
-        const prompt = `Sugira viagens e locais itinerários para ${ocasiao} e locais de turísticos com as seguinte especificações: ${ingr1}, ${ingr2}, ${ingr3} e ${ingr4} e pesquise em site de viagens, reservas de hotéis, voos e atividades.. Caso encontre, informe o link.`;
+        const prompt = `Sugira livros com titulos populares e bem avalidados com essas especiicações: ${ingr1}, ${ingr2}, ${ingr3} e ${ingr4}, além de mostrar serviços que contém esses livros e pesquise sobre algum video de alguém indicando o livro no YouTube. Caso encontre, informe o link.`;
 
         fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
@@ -63,56 +63,57 @@ export function Viagem() {
         <ScrollView>
             <View style={ESTILOS.container}>
                 <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#F1F1F1" />
-                <Text style={ESTILOS.header}>Viagem</Text>
+                <Text style={ESTILOS.header}>Livros</Text>
                 <View style={ESTILOS.form}>
                     <Text style={ESTILOS.label}>Insira as informações abaixo:</Text>
                     <TextInput
-                        placeholder="Continente"
+                        placeholder="Gênero"
                         style={ESTILOS.input}
-                        value={ocasiao}
+                        value={ingr1}
                         onChangeText={(texto) => defIngr1(texto)}
                     />
                     <TextInput
-                        placeholder="Clima"
+                        placeholder="Ator"
                         style={ESTILOS.input}
                         value={ingr2}
                         onChangeText={(texto) => defIngr2(texto)}
                     />
                     <TextInput
-                        placeholder="Estação do ano"
+                        placeholder="Ano"
                         style={ESTILOS.input}
                         value={ingr3}
                         onChangeText={(texto) => defIngr3(texto)}
                     />
                     <TextInput
-                        placeholder="Passeios que dejesa fazer"
+                        placeholder="Classificações"
                         style={ESTILOS.input}
                         value={ingr4}
                         onChangeText={(texto) => defIngr4(texto)}
                     />
                     <TextInput
-                        placeholder="Como ira viajar (ex: avião, ônibus...)"
+                        placeholder="Nível de Popularidade"
                         style={ESTILOS.input}
-                        value={ingr1}
+                        value={ocasiao}
                         onChangeText={(texto) => defOcasiao(texto)}
                     />
                 </View>
 
                 <TouchableOpacity style={ESTILOS.button} onPress={gerarReceita}>
-                    <Text style={ESTILOS.buttonText}>Gerar viagem ✈️</Text>
+                    <Text style={ESTILOS.buttonText}>Gerar Livro</Text>
+                    <MaterialCommunityIcons name="books" size={24} color="#FFF" />
                 </TouchableOpacity>
 
                 <ScrollView contentContainerStyle={{ paddingBottom: 24, marginTop: 4, }} style={ESTILOS.containerScroll} showsVerticalScrollIndicator={false} >
                     {load && (
                         <View style={ESTILOS.content}>
-                            <Text style={ESTILOS.title}>Procurando seu destino...</Text>
+                            <Text style={ESTILOS.title}>Procurando livro...</Text>
                             <ActivityIndicator color="#000" size="large" />
                         </View>
                     )}
 
                     {receita && (
                         <View style={ESTILOS.content}>
-                            <Text style={ESTILOS.title}>Seu destino 👇</Text>
+                            <Text style={ESTILOS.title}>Livro sugerido 👇</Text>
                             <Text style={{ lineHeight: 24 }}>{receita} </Text>
                         </View>
                     )}
@@ -156,7 +157,7 @@ const ESTILOS = StyleSheet.create({
         marginBottom: 16,
     },
     button: {
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         width: '90%',
         borderRadius: 8,
         flexDirection: 'row',

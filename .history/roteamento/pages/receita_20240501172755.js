@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const alturaStatusBar = StatusBar.currentHeight;
 const KEY_GPT = 'SUA_CHAVE_DE_API';
 
-export function Viagem() {
+export function Receita() {
 
     const [load, defLoad] = useState(false);
     const [receita, defReceita] = useState("");
@@ -18,14 +18,14 @@ export function Viagem() {
 
     async function gerarReceita() {
         if (ingr1 === "" || ingr2 === "" || ingr3 === "" || ingr4 === "" || ocasiao === "") {
-            Alert.alert("Atenção", "Informe todas as informações!", [{ text: "Beleza!" }])
+            Alert.alert("Atenção", "Informe todos os ingredientes!", [{ text: "Beleza!" }])
             return;
         }
         defReceita("");
         defLoad(true);
         Keyboard.dismiss();
 
-        const prompt = `Sugira viagens e locais itinerários para ${ocasiao} e locais de turísticos com as seguinte especificações: ${ingr1}, ${ingr2}, ${ingr3} e ${ingr4} e pesquise em site de viagens, reservas de hotéis, voos e atividades.. Caso encontre, informe o link.`;
+        const prompt = `Sugira uma receita detalhada para o ${ocasiao} usando os ingredientes: ${ingr1}, ${ingr2}, ${ingr3} e ${ingr4} e pesquise a receita no YouTube. Caso encontre, informe o link.`;
 
         fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
@@ -63,56 +63,57 @@ export function Viagem() {
         <ScrollView>
             <View style={ESTILOS.container}>
                 <StatusBar barStyle="dark-content" translucent={true} backgroundColor="#F1F1F1" />
-                <Text style={ESTILOS.header}>Viagem</Text>
+                <Text style={ESTILOS.header}>Receitas Fáceis</Text>
                 <View style={ESTILOS.form}>
-                    <Text style={ESTILOS.label}>Insira as informações abaixo:</Text>
+                    <Text style={ESTILOS.label}>Insira os ingredientes abaixo:</Text>
                     <TextInput
-                        placeholder="Continente"
+                        placeholder="Ingrediente 1"
                         style={ESTILOS.input}
-                        value={ocasiao}
+                        value={ingr1}
                         onChangeText={(texto) => defIngr1(texto)}
                     />
                     <TextInput
-                        placeholder="Clima"
+                        placeholder="Ingrediente 2"
                         style={ESTILOS.input}
                         value={ingr2}
                         onChangeText={(texto) => defIngr2(texto)}
                     />
                     <TextInput
-                        placeholder="Estação do ano"
+                        placeholder="Ingrediente 3"
                         style={ESTILOS.input}
                         value={ingr3}
                         onChangeText={(texto) => defIngr3(texto)}
                     />
                     <TextInput
-                        placeholder="Passeios que dejesa fazer"
+                        placeholder="Ingrediente 4"
                         style={ESTILOS.input}
                         value={ingr4}
                         onChangeText={(texto) => defIngr4(texto)}
                     />
                     <TextInput
-                        placeholder="Como ira viajar (ex: avião, ônibus...)"
+                        placeholder="Almoço ou Jantar"
                         style={ESTILOS.input}
-                        value={ingr1}
+                        value={ocasiao}
                         onChangeText={(texto) => defOcasiao(texto)}
                     />
                 </View>
 
                 <TouchableOpacity style={ESTILOS.button} onPress={gerarReceita}>
-                    <Text style={ESTILOS.buttonText}>Gerar viagem ✈️</Text>
+                    <Text style={ESTILOS.buttonText}>Gerar receita</Text>
+                    <MaterialCommunityIcons name="food-variant" size={24} color="#FFF" />
                 </TouchableOpacity>
 
                 <ScrollView contentContainerStyle={{ paddingBottom: 24, marginTop: 4, }} style={ESTILOS.containerScroll} showsVerticalScrollIndicator={false} >
                     {load && (
                         <View style={ESTILOS.content}>
-                            <Text style={ESTILOS.title}>Procurando seu destino...</Text>
+                            <Text style={ESTILOS.title}>Produzindo receita...</Text>
                             <ActivityIndicator color="#000" size="large" />
                         </View>
                     )}
 
                     {receita && (
                         <View style={ESTILOS.content}>
-                            <Text style={ESTILOS.title}>Seu destino 👇</Text>
+                            <Text style={ESTILOS.title}>Sua receita 👇</Text>
                             <Text style={{ lineHeight: 24 }}>{receita} </Text>
                         </View>
                     )}
@@ -125,7 +126,6 @@ export function Viagem() {
 const ESTILOS = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f1f1f1',
         alignItems: 'center',
         paddingTop: 20,
     },
@@ -156,7 +156,7 @@ const ESTILOS = StyleSheet.create({
         marginBottom: 16,
     },
     button: {
-        backgroundColor: 'red',
+        backgroundColor: 'blue',
         width: '90%',
         borderRadius: 8,
         flexDirection: 'row',

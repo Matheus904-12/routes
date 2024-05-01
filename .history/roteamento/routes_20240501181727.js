@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Viagem } from './pages/viagem';
-import { Livros } from './pages/livros';
+import { Livros } from './pages/filmes';
 import { Aparelho } from './pages/aparelho';
 import { Receita } from './pages/receita';
 import { Ionicons } from '@expo/vector-icons/'
@@ -11,7 +11,7 @@ export function Routes() {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name="Receitas"
+                name="Receita"
                 component={Receita}
                 options={{
                     tabBarShowLabel: false,
